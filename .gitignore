@@ -1,0 +1,4 @@
+# Ignore duplicate root screenshots/assets (site uses ./assets/)
+/*.png
+/*.jpg
+.vercel/
