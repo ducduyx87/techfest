@@ -2641,4 +2641,140 @@
     requestAnimationFrame(draw);
   })();
 </script>
+<!-- ================================================================= -->
+<!-- TECHFEST PHÚ THỌ 2026 AI CHATBOT CTA & WIDGET -->
+<!-- ================================================================= -->
+<div id="techfest-chatbot-root" class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 font-sans">
+  <!-- Chat Window Panel (Hidden by default) -->
+  <div id="techfest-chatbot-panel" class="hidden w-[340px] sm:w-[385px] max-w-[calc(100vw-2.5rem)] rounded-3xl bg-white border border-slate-200/90 shadow-[0_25px_65px_-15px_rgba(15,23,42,0.28)] overflow-hidden flex flex-col transition-all duration-300">
+    <!-- Chat Header -->
+    <div class="px-5 py-4 bg-gradient-to-r from-navy-950 via-brand-800 to-brand-600 text-white flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-[22px] text-cyan-300">smart_toy</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h4 class="font-display font-bold text-sm tracking-tight">Trợ Lý AI TechFest</h4>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <p class="text-[11px] text-sky-100/85">TechFest Phú Thọ 2026 • Trực tuyến 24/7</p>
+        </div>
+      </div>
+      <button aria-label="Đóng ChatBot" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors" onclick="toggleTechfestChat(false)">
+        <span class="material-symbols-outlined text-[18px]">close</span>
+      </button>
+    </div>
+
+    <!-- Messages Area -->
+    <div id="techfest-chat-messages" class="p-4 h-[320px] overflow-y-auto bg-slate-50/80 space-y-3 text-xs sm:text-[13px]">
+      <div class="flex items-start gap-2.5">
+        <div class="w-7 h-7 rounded-full bg-brand-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+          <span class="material-symbols-outlined text-[15px]">smart_toy</span>
+        </div>
+        <div class="p-3 rounded-2xl rounded-tl-xs bg-white border border-slate-200/80 text-slate-700 shadow-2xs leading-relaxed">
+          Xin chào! 👋 Mình là <strong>Trợ lý AI TechFest Phú Thọ 2026</strong>. Bạn cần tra cứu lịch trình 10 sự kiện, địa điểm, diễn giả hay cách đặt gian hàng 3D?
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Reply Chips -->
+    <div class="px-3.5 py-2 bg-white border-t border-slate-100 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+      <button class="px-2.5 py-1 rounded-full bg-brand-50 hover:bg-brand-100 border border-brand-200 text-brand-700 text-[11px] font-semibold whitespace-nowrap transition-colors" onclick="sendQuickChat('Lịch trình 10 sự kiện')">📅 Lịch trình 25–26/11</button>
+      <button class="px-2.5 py-1 rounded-full bg-brand-50 hover:bg-brand-100 border border-brand-200 text-brand-700 text-[11px] font-semibold whitespace-nowrap transition-colors" onclick="sendQuickChat('Địa điểm tổ chức ở đâu?')">📍 Địa điểm</button>
+      <button class="px-2.5 py-1 rounded-full bg-brand-50 hover:bg-brand-100 border border-brand-200 text-brand-700 text-[11px] font-semibold whitespace-nowrap transition-colors" onclick="sendQuickChat('Thông tin 100 gian hàng triển lãm')">🏢 100 Gian hàng</button>
+      <button class="px-2.5 py-1 rounded-full bg-brand-50 hover:bg-brand-100 border border-brand-200 text-brand-700 text-[11px] font-semibold whitespace-nowrap transition-colors" onclick="sendQuickChat('Hướng dẫn đăng ký tham dự')">📝 Đăng ký</button>
+    </div>
+
+    <!-- Input Form -->
+    <form class="p-3 bg-white border-t border-slate-200/80 flex items-center gap-2" onsubmit="handleChatSubmit(event)">
+      <input id="techfest-chat-input" type="text" autocomplete="off" placeholder="Nhập câu hỏi của bạn..." class="flex-1 px-3.5 py-2 rounded-xl bg-slate-100 border border-slate-200 text-xs sm:text-sm text-navy-900 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-brand-500 transition-all" />
+      <button type="submit" aria-label="Gửi tin nhắn" class="w-9 h-9 rounded-xl bg-gradient-to-r from-brand-600 to-accent-blue text-white flex items-center justify-center shadow-sm hover:brightness-110 transition-all shrink-0">
+        <span class="material-symbols-outlined text-[18px]">send</span>
+      </button>
+    </form>
+  </div>
+
+  <!-- Floating ChatBot CTA Button -->
+  <button id="techfest-chatbot-cta" onclick="toggleTechfestChat()" class="group relative inline-flex items-center gap-2.5 pl-3.5 pr-4 py-3 rounded-full bg-gradient-to-r from-navy-950 via-brand-700 to-accent-blue text-white shadow-[0_14px_35px_-6px_rgba(2,132,199,0.55)] hover:shadow-[0_18px_42px_-6px_rgba(2,132,199,0.75)] hover:-translate-y-0.5 transition-all duration-300 border border-white/20">
+    <span class="relative flex h-3 w-3">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-300 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-400"></span>
+    </span>
+    <span class="material-symbols-outlined text-[22px] group-hover:rotate-12 transition-transform">smart_toy</span>
+    <span class="font-display font-bold text-xs sm:text-sm tracking-wide">Hỏi Trợ Lý AI</span>
+  </button>
+</div>
+
+<script id="techfestChatbotScript">
+  function toggleTechfestChat(forceState) {
+    const panel = document.getElementById('techfest-chatbot-panel');
+    const input = document.getElementById('techfest-chat-input');
+    if (!panel) return;
+    const isHidden = panel.classList.contains('hidden');
+    const shouldOpen = typeof forceState === 'boolean' ? forceState : isHidden;
+    if (shouldOpen) {
+      panel.classList.remove('hidden');
+      setTimeout(() => input && input.focus(), 80);
+    } else {
+      panel.classList.add('hidden');
+    }
+  }
+
+  function appendChatMsg(text, sender) {
+    const box = document.getElementById('techfest-chat-messages');
+    if (!box) return;
+    const wrap = document.createElement('div');
+    if (sender === 'user') {
+      wrap.className = 'flex justify-end';
+      wrap.innerHTML = `<div class="max-w-[82%] px-3.5 py-2.5 rounded-2xl rounded-tr-xs bg-brand-600 text-white shadow-xs leading-relaxed"></div>`;
+      wrap.querySelector('div').textContent = text;
+    } else {
+      wrap.className = 'flex items-start gap-2.5';
+      wrap.innerHTML = `
+        <div class="w-7 h-7 rounded-full bg-brand-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+          <span class="material-symbols-outlined text-[15px]">smart_toy</span>
+        </div>
+        <div class="max-w-[84%] p-3 rounded-2xl rounded-tl-xs bg-white border border-slate-200/80 text-slate-700 shadow-2xs leading-relaxed">${text}</div>`;
+    }
+    box.appendChild(wrap);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function getBotReply(query) {
+    const q = query.toLowerCase();
+    if (q.includes('lịch') || q.includes('sự kiện') || q.includes('ngày') || q.includes('giờ')) {
+      return '📅 <strong>TechFest Phú Thọ 2026</strong> diễn ra trong 2 ngày <strong>25 – 26/11/2026</strong> với 10 sự kiện trọng tâm:<br>• <strong>25/11:</strong> Hành trình về nguồn (06h00), Khai mạc trưng bày (08h00), Cà phê Khởi nghiệp (08h30), Kết nối Cung Cầu (08h30), Tọa đàm Mở (13h30), <strong>Lễ Khai Mạc (15h00)</strong>.<br>• <strong>26/11:</strong> Hội thảo Nông nghiệp &amp; Du lịch (08h00), Hội thảo Nhà trường – Doanh nghiệp (13h30), Lễ Bế Mạc (16h00).';
+    }
+    if (q.includes('địa điểm') || q.includes('ở đâu') || q.includes('địa chỉ')) {
+      return '📍 Sự kiện chính diễn ra tại <strong>Nhà Văn hóa nghệ thuật tỉnh, phường Việt Trì, Phú Thọ</strong> (riêng hoạt động <em>Hành trình về nguồn</em> sáng 25/11 tại <strong>Khu Di tích lịch sử Đền Hùng</strong>).';
+    }
+    if (q.includes('gian hàng') || q.includes('triển lãm') || q.includes('3d')) {
+      return '🏢 Triển lãm quy tụ <strong>100 gian hàng</strong> trưng bày thành tựu KH&amp;CN, ĐMST và chuyển đổi số (08h00 – 22h00 ngày 25 &amp; 26/11), kết hợp không gian triển lãm số 3D trực tuyến 24/7.';
+    }
+    if (q.includes('đăng ký') || q.includes('tham dự') || q.includes('liên hệ')) {
+      return '📝 Bạn có thể điền trực tiếp form ở mục <a href="#dang-ky" onclick="toggleTechfestChat(false)" class="text-brand-600 font-bold underline">Đăng Ký Tham Dự</a> bên dưới, hoặc liên hệ Ban Tổ Chức qua email <strong>bandoingoai@techfestphutho.vn</strong>.';
+    }
+    if (q.includes('diễn giả') || q.includes('chuyên gia')) {
+      return '🎤 Chương trình quy tụ các chuyên gia hàng đầu như <strong>TS. Nguyễn Quang Hưng</strong> (Bộ KH&amp;CN), <strong>Prof. Park Sung-Hoon</strong> (Viện KIST Hàn Quốc), <strong>PGS. TS. Phạm Xuân Dương</strong> và <strong>Edward Lawrence</strong> (Fund Wise Asia).';
+    }
+    return 'Cảm ơn bạn đã quan tâm đến <strong>TechFest Phú Thọ 2026</strong>! Bạn có thể hỏi mình về <em>lịch trình 10 sự kiện</em>, <em>địa điểm tổ chức</em>, <em>triển lãm 100 gian hàng</em>, <em>diễn giả</em> hoặc <em>cách đăng ký tham dự</em> nhé.';
+  }
+
+  function sendQuickChat(text) {
+    appendChatMsg(text, 'user');
+    setTimeout(() => appendChatMsg(getBotReply(text), 'bot'), 280);
+  }
+
+  function handleChatSubmit(e) {
+    e.preventDefault();
+    const input = document.getElementById('techfest-chat-input');
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    appendChatMsg(text, 'user');
+    setTimeout(() => appendChatMsg(getBotReply(text), 'bot'), 320);
+  }
+</script>
 </body></html>
