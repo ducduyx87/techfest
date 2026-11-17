@@ -202,14 +202,10 @@
   }
   .kv-dongson-halo {
     transform-origin: center;
+    animation: kv-halo-rotate 75s linear infinite;
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .kv-dongson-halo {
-      animation: kv-halo-rotate 75s linear infinite;
-    }
-    .kv-live-pulse {
-      animation: kv-ping-soft 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
-    }
+  .kv-live-pulse {
+    animation: kv-ping-soft 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
   @keyframes kv-halo-rotate {
     from { transform: rotate(0deg); }
@@ -331,25 +327,23 @@
     z-index: 12;
     background: conic-gradient(from 0deg, transparent 0deg, rgba(0, 210, 255, 0.2) 45deg, transparent 70deg);
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .globe-aura {
-      animation: aura-pulse 5s ease-in-out infinite alternate;
-    }
-    .globe-core-wrap {
-      animation: globe-float 4.5s ease-in-out infinite alternate;
-    }
-    .globe-core-img {
-      animation: globe-spin-tilt 16s ease-in-out infinite alternate;
-    }
-    .gyro-orbit-1 {
-      animation: spin-gyro-1 12s linear infinite;
-    }
-    .gyro-orbit-2 {
-      animation: spin-gyro-2 18s linear infinite reverse;
-    }
-    .equator-radar {
-      animation: radar-spin 8s linear infinite;
-    }
+  .globe-aura {
+    animation: aura-pulse 5s ease-in-out infinite alternate;
+  }
+  .globe-core-wrap {
+    animation: globe-float 4.5s ease-in-out infinite alternate;
+  }
+  .globe-core-img {
+    animation: globe-spin-tilt 16s ease-in-out infinite alternate;
+  }
+  .gyro-orbit-1 {
+    animation: spin-gyro-1 12s linear infinite;
+  }
+  .gyro-orbit-2 {
+    animation: spin-gyro-2 18s linear infinite reverse;
+  }
+  .equator-radar {
+    animation: radar-spin 8s linear infinite;
   }
   @keyframes spin-gyro-1 {
     0% { transform: rotateX(68deg) rotateY(18deg) rotateZ(0deg); }
@@ -2768,12 +2762,6 @@
       const prefix = el.dataset.countPrefix || '';
       const suffix = el.dataset.countSuffix || '';
       const useComma = el.dataset.countFormat === 'comma';
-
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        const formatted = useComma ? target.toLocaleString('en-US') : String(target);
-        el.textContent = `${prefix}${formatted}${suffix}`;
-        return;
-      }
 
       let startTime = null;
       function tick(now) {
